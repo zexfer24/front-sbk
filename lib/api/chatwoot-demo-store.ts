@@ -268,7 +268,10 @@ export function addMessage(
     senderType: "human",
     senderName: "Asesor",
     createdAt: new Date().toISOString(),
-    attachments: input.attachments ?? [],
+    attachments: (input.attachments ?? []).map((a) => ({
+      id: `att-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      ...a,
+    })),
     status: "sent",
   }
 
